@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import okpd from './Okpd.js';
+import Okpd from './Okpd.js';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <okpd />
+    <Okpd />
   </React.StrictMode>,
   document.getElementById('root')
 );
