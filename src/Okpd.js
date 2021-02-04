@@ -5,7 +5,62 @@ import React, {useState} from "react";
 import SearchOkpd from "./components/SearchOkpd";
 import NavTreeList from "./components/NavTreeList";
 
-
+const toppingOptions = [
+  {
+    name: "Pepperoni",
+    code: "pepperoni-id",
+    subArray: [
+      {
+        name: "Spicy",
+        code: "spicy-id",
+        subArray: []
+      },
+      {
+        name: "Regular",
+        code: "regular-id",
+        subArray: []
+      }
+    ]
+  },
+  {
+    name: "Chicken",
+    code: "chicken-id",
+    subArray: [
+      {
+        name: "Buffalo",
+        code: "buffalo-id",
+        subArray: [
+          {
+            name: "Mild",
+            code: 'mild-id',
+            subArray: [],
+          },
+          {
+            name: "Hot",
+            code: 'hot-id',
+            subArray: [
+              {
+                name: 'Jalapeño',
+                code: 'jalapeno-id',
+                subArray: []
+              },
+              {
+                name: 'Cayenne',
+                code: 'cayenne-id',
+                subArray: []
+              }
+            ],
+          },
+        ]
+      },
+      {
+        name: "BBQ",
+        code: 'bbq-id',
+        subArray: [],
+      }
+    ]
+  },
+]
 let Okpd = () => {
 
   const [Data, setData] = useState({
@@ -30,7 +85,14 @@ let Okpd = () => {
           />
         </div>
         <div className="r">
-          <NavTreeList/>
+          <button className="btn btn-primary">
+            СПИСОК ОКПД2
+          </button>
+        </div>
+        <div className="r">
+          <NavTreeList
+            listContent={toppingOptions}
+          />
         </div>
       </div>
     </div>
