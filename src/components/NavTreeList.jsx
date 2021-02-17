@@ -13,7 +13,7 @@ export default class NavTreeList extends Component {
   render() {
     const {selectedOptions} = this.state;
     return (
-      <div className="container">
+      <div className="containerModal">
         <div className="wrapper">
           <OptionsList
             options={this.props.listContent}
@@ -50,17 +50,17 @@ const OptionsList = ({options, selectedOptions, onChange, isFirst}) => {
       {options.map(option => (
           <ul className={isFirst && "firstUL"}>
             <Checkbox
-              selected={selectedOptions[option.code]}
-              label={option.name}
+              selected={selectedOptions[option.Code]}
+              label={option.Name}
               onChange={() => {
-                handleCheckboxClicked(option.code)
+                handleCheckboxClicked(option.Code)
               }}
             />
-            {(option.subArray.length > 0 && selectedOptions[option.code]) &&
+            {(option.Notes.length > 0 && selectedOptions[option.Code]) &&
             <OptionsList
-              options={option.subArray}
-              selectedOptions={selectedOptions[option.code]}
-              onChange={(subSelections) => handleSubOptionsListChange(option.code, subSelections)}
+              options={option.Notes}
+              selectedOptions={selectedOptions[option.Code]}
+              onChange={(subSelections) => handleSubOptionsListChange(option.Code, subSelections)}
             />
             }
           </ul>

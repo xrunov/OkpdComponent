@@ -1,5 +1,5 @@
 const OkpdConfig = {
-  conf: 1,
+  reqLink: "https://asmolve-nest-proj.herokuapp.com/api/okpd/getAll",
 };
 Object.preventExtensions(OkpdConfig);
 

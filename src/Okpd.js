@@ -4,74 +4,24 @@ import 'react-bootstrap';
 import React, {useState} from "react";
 import SearchOkpd from "./components/SearchOkpd";
 import NavTreeList from "./components/NavTreeList";
+import Modal from "./components/Modal";
+import { connect } from 'react-redux';
 
-const toppingOptions = [
-  {
-    name: "Pepperoni",
-    code: "pepperoni-id",
-    subArray: [
-      {
-        name: "Spicy",
-        code: "spicy-id",
-        subArray: []
-      },
-      {
-        name: "Regular",
-        code: "regular-id",
-        subArray: []
-      }
-    ]
-  },
-  {
-    name: "Chicken",
-    code: "chicken-id",
-    subArray: [
-      {
-        name: "Buffalo",
-        code: "buffalo-id",
-        subArray: [
-          {
-            name: "Mild",
-            code: 'mild-id',
-            subArray: [],
-          },
-          {
-            name: "Hot",
-            code: 'hot-id',
-            subArray: [
-              {
-                name: 'Jalapeño',
-                code: 'jalapeno-id',
-                subArray: []
-              },
-              {
-                name: 'Cayenne',
-                code: 'cayenne-id',
-                subArray: []
-              }
-            ],
-          },
-        ]
-      },
-      {
-        name: "BBQ",
-        code: 'bbq-id',
-        subArray: [],
-      }
-    ]
-  },
-]
-let Okpd = () => {
+let Okpd = (props) => {
+  const [isOpen, setOpen] = useState(false)
 
   const [Data, setData] = useState({
-    setData: "",
+
   });
+
+  let toppingOptions = props.treeListContent;
 
   let handleSearchChange = (SearchData) => {
     Data.searchData = SearchData;
   };
 
   // разметка компонента
+
   return (
     <div className="background">
       <div className="OkpdContainer">
@@ -85,18 +35,27 @@ let Okpd = () => {
           />
         </div>
         <div className="r">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={() => setOpen(true)}>
             СПИСОК ОКПД2
           </button>
         </div>
-        <div className="r">
-          <NavTreeList
-            listContent={toppingOptions}
-          />
-        </div>
       </div>
+      <Modal isOpen={isOpen} setOpen={setOpen}>
+        <NavTreeList
+          listContent={toppingOptions}
+        />
+      </Modal>
     </div>
   );
 }
 
-export default Okpd;
+export default connect (
+  state => ({
+    treeListContent: state
+  }),
+  dispatch => ({
+    onKnopka : (listCont) => {
+      dispatch({type: 'ChangeList', payload: listCont});
+    }
+  })
+)(Okpd);
