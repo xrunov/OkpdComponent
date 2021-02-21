@@ -56,9 +56,9 @@ const OptionsList = ({options, selectedOptions, onChange, isFirst}) => {
                 handleCheckboxClicked(option.Code)
               }}
             />
-            {(option.Notes.length > 0 && selectedOptions[option.Code]) &&
+            {(option.subCategory.length > 0 && selectedOptions[option.Code]) &&
             <OptionsList
-              options={option.Notes}
+              options={option.subCategory}
               selectedOptions={selectedOptions[option.Code]}
               onChange={(subSelections) => handleSubOptionsListChange(option.Code, subSelections)}
             />
