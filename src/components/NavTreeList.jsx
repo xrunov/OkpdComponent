@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import '../OkpdStyle.sass';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-
+//компонент
 class NavTreeList extends Component {
   constructor(props) {
     super(props)
@@ -10,7 +10,7 @@ class NavTreeList extends Component {
       selectedOptions: {},
     }
   }
-
+//рекурсивный рендер древовидного списка
   render() {
     const {selectedOptions} = this.state;
     return (
@@ -18,7 +18,6 @@ class NavTreeList extends Component {
         <div className="wrapper">
           <OptionsList
             options={this.props.treeListContent}
-            // options={[]}
             onChange={(selectedOptions) => {
               this.setState({selectedOptions})
             }}
@@ -32,13 +31,12 @@ class NavTreeList extends Component {
 }
 
 const OptionsList = ({options, selectedOptions, onChange, isFirst}) => {
+
   const handleCheckboxClicked = (selectedOptionCode) => {
     if (selectedOptions[selectedOptionCode]) {
       delete selectedOptions[selectedOptionCode];
-
     } else {
       selectedOptions[selectedOptionCode] = {}
-
     }
     onChange(selectedOptions)
   }
@@ -59,6 +57,7 @@ const OptionsList = ({options, selectedOptions, onChange, isFirst}) => {
                 handleCheckboxClicked(option.Code)
               }}
             />
+            {/*/////////////ошибка возникает тут при срабатывании диспатча////////////*/}
             {(option.subCategory.length > 0 && selectedOptions[option.Code]) &&
             <OptionsList
               options={option.subCategory}
@@ -85,7 +84,7 @@ const Checkbox = ({selected, label, onChange}) => {
     </label>
   )
 }
-
+// конект к стору
 export default connect (
   state => ({
     treeListContent: state

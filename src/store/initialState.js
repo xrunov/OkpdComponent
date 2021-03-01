@@ -1,6 +1,6 @@
 const initialState = {
   treeListContent: [
-      {Code: "01", Name: "Продукция и услуги сельского хозяйства и охоты", Notes: null, subCategory: []},
+      {Code: "01", Name: "Идет загрузка данных", Notes: null, subCategory: []},
     ],
 };
 

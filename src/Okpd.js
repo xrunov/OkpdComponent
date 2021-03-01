@@ -33,7 +33,6 @@ let makeTree = (D) => {
     }));
 }
 //запрос данных
-
 let Tree = [];
 let getData = async () => {
   try {
@@ -60,29 +59,26 @@ let Okpd = (props) => {
     isOpen: false,
     tExists: false,
   });
-
+  //функция включения/выключения модального окна
   let toggleState = () => {
     Data.isOpen = !Data.isOpen;
     setData({...Data});
   }
-
+  //обработчик нажатия кнопки
   let handleListClick = () => {
-    // props.onFetch(Tree);
-    console.log(Tree);
+    // лог для проверки
     console.log(props.treeListContent);
     toggleState();
   }
-
-  //toggle функция
+  //toggle функция существования таблицы
   let toggleTable = () => {
     Data.tExists = !Data.tExists;
     setData({...Data});
   }
-
+  //шаблон обрабочика изменения посковой строки
   let handleSearchChange = (SearchData) => {
     Data.searchData = SearchData;
   };
-
   // разметка компонента
   return (
     <div className="background">
@@ -118,14 +114,9 @@ let Okpd = (props) => {
     </div>
   );
 }
-
+//конект к стору
 export default connect (
   state => ({
     treeListContent: state
-  }),
-  dispatch => ({
-    onFetch : (listCont) => {
-      dispatch({type: 'CHANGELIST', content: listCont});
-    }
   })
 )(Okpd);
