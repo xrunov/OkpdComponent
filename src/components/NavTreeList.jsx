@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import '../OkpdStyle.sass';
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 
-export default class NavTreeList extends Component {
+class NavTreeList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,7 +17,8 @@ export default class NavTreeList extends Component {
       <div className="containerModal">
         <div className="wrapper">
           <OptionsList
-            options={this.props.listContent}
+            options={this.props.treeListContent}
+            // options={[]}
             onChange={(selectedOptions) => {
               this.setState({selectedOptions})
             }}
@@ -27,15 +29,16 @@ export default class NavTreeList extends Component {
       </div>
     )
   }
-};
+}
 
 const OptionsList = ({options, selectedOptions, onChange, isFirst}) => {
-
   const handleCheckboxClicked = (selectedOptionCode) => {
     if (selectedOptions[selectedOptionCode]) {
       delete selectedOptions[selectedOptionCode];
+
     } else {
       selectedOptions[selectedOptionCode] = {}
+
     }
     onChange(selectedOptions)
   }
@@ -82,3 +85,9 @@ const Checkbox = ({selected, label, onChange}) => {
     </label>
   )
 }
+
+export default connect (
+  state => ({
+    treeListContent: state
+  })
+)(NavTreeList);
